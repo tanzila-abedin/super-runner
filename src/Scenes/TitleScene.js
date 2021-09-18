@@ -66,6 +66,8 @@ export default class TitleScene extends Phaser.Scene {
     this.input.on("pointerout", function (event, gameObjects) {
       gameObjects[0].setTexture("blueButton1");
     });
+
+    
   }
 
   centerButton(gameObject, oSet = 0) {
