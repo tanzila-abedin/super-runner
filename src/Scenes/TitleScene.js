@@ -1,5 +1,6 @@
-import "phaser";
-import config from "../Config/config"
+import Phaser from "phaser";
+import config from "../Config/config";
+import preloader from './PreloaderScene'
 
 export default class TitleScene extends Phaser.Scene {
   constructor() {
@@ -67,7 +68,13 @@ export default class TitleScene extends Phaser.Scene {
       gameObjects[0].setTexture("blueButton1");
     });
 
-    
+  // globals
+    this.model = this.sys.game.globals.model;
+    if (this.model.musicOn === true && this.model.bgMusicPlaying === false) {
+      this.model.bgMusicPlaying = true;
+      this.bgMusic = this.sound.add("bgMusic", { volume: 0.5, loop: true });
+      this.bgMusic.play();
+    }
   }
 
   centerButton(gameObject, oSet = 0) {

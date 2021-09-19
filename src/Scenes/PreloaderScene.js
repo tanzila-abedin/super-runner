@@ -1,4 +1,4 @@
-import "phaser";
+import Phaser from "phaser";
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
     super("Preloader");
@@ -73,7 +73,7 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image("phaserLogo", "src/assets/logo.png");
     this.load.image("box", "src/assets/grey_box.png");
     this.load.image("checkedBox", "src/assets/blue_boxCheckmark.png");
-    this.load.audio("bgMusic", ["assets/TownTheme.mp3"]);
+    this.load.audio("bgMusic", ["src/assets/TownTheme.mp3"]);
   }
   create() {}
 
@@ -82,7 +82,7 @@ export default class PreloaderScene extends Phaser.Scene {
   }
 
   ready() {
-  this.scene.start("Options");
+    this.scene.start("Options");
     this.readyCount++;
     if (this.readyCount === 2) {
       this.scene.start("Title");
