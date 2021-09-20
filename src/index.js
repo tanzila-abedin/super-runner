@@ -7,6 +7,8 @@ import PreloaderScene from "./Scenes/PreloaderScene";
 import TitleScene from "./Scenes/TitleScene";
 import OptionsScene from "./Scenes/OptionsScene";
 import CreditsScene from "./Scenes/CreditsScene";
+
+import Model from "./Model";
 class Game extends Phaser.Game {
   constructor() {
     super(config);

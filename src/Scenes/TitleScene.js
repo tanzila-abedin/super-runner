@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 import Phaser from "phaser";
 import Button from "../Objects/Button";
 import config from "../Config/config";
 import preloader from './PreloaderScene'
+=======
+import "phaser";
+import config from "../Config/config"
+import Button from "../Objects/Button";
+>>>>>>> fdf1f80318b30a695b19495959225477ee1e621a
 
 export default class TitleScene extends Phaser.Scene {
   constructor() {
@@ -49,20 +55,5 @@ export default class TitleScene extends Phaser.Scene {
       this.sys.game.globals.bgMusic = this.bgMusic;
     }
   }
-
-  centerButton(gameObject, oSet = 0) {
-    Phaser.Display.Align.In.Center(
-      gameObject,
-      this.add.zone(
-        config.width / 2,
-        config.height / 2 - oSet * 100,
-        config.width,
-        config.height
-      )
-    );
-  }
-
-  centerButtonText(gameText, gameButton) {
-    Phaser.Display.Align.In.Center(gameText, gameButton);
   }
 }
