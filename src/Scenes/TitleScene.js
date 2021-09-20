@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 import Phaser from "phaser";
 import Button from "../Objects/Button";
 import config from "../Config/config";
 import preloader from './PreloaderScene'
-=======
-import "phaser";
-import config from "../Config/config"
-import Button from "../Objects/Button";
->>>>>>> fdf1f80318b30a695b19495959225477ee1e621a
 
 export default class TitleScene extends Phaser.Scene {
   constructor() {
@@ -54,6 +48,5 @@ export default class TitleScene extends Phaser.Scene {
       this.model.bgMusicPlaying = true;
       this.sys.game.globals.bgMusic = this.bgMusic;
     }
-  }
   }
 }

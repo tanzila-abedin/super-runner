@@ -28,11 +28,6 @@ this.model.soundOn = !this.model.soundOn;
         this.updateAudio();
       }.bind(this)
     );
-<<<<<<< HEAD
-=======
-    this.updateAudio();
->>>>>>> fdf1f80318b30a695b19495959225477ee1e621a
-
 this.menuButton = new Button(
   this,
   400,
@@ -42,10 +37,7 @@ this.menuButton = new Button(
   "Menu",
   "Title"
 );
-<<<<<<< HEAD
     this.updateAudio();
-=======
->>>>>>> fdf1f80318b30a695b19495959225477ee1e621a
   }
 
   updateAudio() {
