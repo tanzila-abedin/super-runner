@@ -5,8 +5,10 @@ import preloader from './PreloaderScene'
 export default class TitleScene extends Phaser.Scene {
   constructor() {
     super("Title");
+    console.log("title")
   }
   create() {
+    console.log('create')
     // Game
     this.gameButton = this.add.sprite(100, 200, "blueButton1").setInteractive();
     this.centerButton(this.gameButton, 1);
@@ -70,12 +72,13 @@ export default class TitleScene extends Phaser.Scene {
 
   // globals
     this.model = this.sys.game.globals.model;
-    if (this.model.musicOn === true && this.model.bgMusicPlaying === false) {
-      this.model.bgMusicPlaying = true;
-      this.bgMusic = this.sound.add("bgMusic", { volume: 0.5, loop: true });
-      this.bgMusic.play();
-    }
-  }
+     if (this.model.musicOn === true && this.model.bgMusicPlaying === false) {
+       this.bgMusic = this.sound.add("bgMusic", { volume: 0.5, loop: true });
+       this.bgMusic.play();
+       this.model.bgMusicPlaying = true;
+       this.sys.game.globals.bgMusic = this.bgMusic;
+     }
+}
 
   centerButton(gameObject, oSet = 0) {
     Phaser.Display.Align.In.Center(
