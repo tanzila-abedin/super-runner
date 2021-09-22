@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 const gameConfig = {
   type: Phaser.AUTO,
-  width:  1366,
+  width: 1366,
   height: 741,
   parent: "canvas",
   dom: {
@@ -18,3 +18,5 @@ const gameConfig = {
 };
 
 export default gameConfig;
+
+

@@ -74,8 +74,23 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image("box", "src/assets/grey_box.png");
     this.load.image("checkedBox", "src/assets/blue_boxCheckmark.png");
     this.load.audio("bgMusic", ["src/assets/TownTheme.mp3"]);
+
+    // game background
+    this.load.image("background", "src/assets/game/background.png");
+    this.load.image("spike", "src/assets/game/spike.png");
+    this.load.image("fullscreen", "src/assets/game/fullsc.png");
+    this.load.image("corona", "src/assets/game/v2.png");
+    this.load.image("jem", "src/assets/game/jem.png");
+    this.load.image("river", "src/assets/game/river.png");
+    this.load.image("gameover", "src/assets/game/gameover.jpg");
+    this.load.image("vaccine", "src/assets/game/vaccine.png");
+    this.load.image("win", "src/assets/game/win.jpg");
+
+    // Loading tilesheet and JSON file
+
+    this.load.image("tiles", "src/assets/game/tilesets/platformPack_tilesheet.png");
+    this.load.tilemapTiledJSON("map", "src/assets/game/tilemaps/level4.json");
   }
-  create() {}
 
   init() {
     this.readyCount = 0;
@@ -83,7 +98,6 @@ export default class PreloaderScene extends Phaser.Scene {
 
   ready() {
     this.readyCount++;
-    console.log('ready')
     if (this.readyCount === 2) {
       this.scene.start("Title");
          console.log('ready-title')
