@@ -80,7 +80,7 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image("spike", "src/assets/game/spike.png");
     this.load.image("fullscreen", "src/assets/game/fullsc.png");
     this.load.image("corona", "src/assets/game/v2.png");
-    this.load.image("jem", "src/assets/game/jem.png");
+    this.load.image("jem", "src/assets/game/star.png");
     this.load.image("river", "src/assets/game/river.png");
     this.load.image("gameover", "src/assets/game/gameover.jpg");
     this.load.image("vaccine", "src/assets/game/vaccine.png");

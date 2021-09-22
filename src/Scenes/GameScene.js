@@ -69,7 +69,24 @@ export default class GameScene extends Phaser.Scene {
     });
 
     // Adding collision between player and rivers
-    this.physics.add.collider(this.player, this.rivers, this.playerHit, null, this);
+    this.physics.add.collider(
+      this.player,
+      this.rivers,
+      this.playerHit,
+      null,
+      this
+    );
+
+    // Creating jems 
+    this.jems = this.physics.add.group({
+      allowGravity: false,
+    });
+    const jemObjects = map.getObjectLayer("jems")["objects"];
+    jemObjects.forEach((jemObject) => {
+    const jem = this.jems
+        .create(jemObject.x, jemObject.y - 50, "jem")
+        .setOrigin(0, 0);
+    });
 
     // create camera to follow the player
 
