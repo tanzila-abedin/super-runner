@@ -86,10 +86,21 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image("vaccine", "src/assets/game/vaccine.png");
     this.load.image("win", "src/assets/game/win.jpg");
 
+    // Load player
+
+    this.load.atlas(
+      "player",
+      "src/assets/game/kenney_player.png",
+      "src/assets/game/kenney_player_atlas.json"
+    );
+
     // Loading tilesheet and JSON file
 
-    this.load.image("tiles", "src/assets/game/tilesets/platformPack_tilesheet.png");
-    this.load.tilemapTiledJSON("map", "src/assets/game/tilemaps/level4.json");
+    this.load.image(
+      "tiles",
+      "src/assets/game/tilesets/platformPack_tilesheet.png"
+    );
+    this.load.tilemapTiledJSON("map","src/assets/game/tilemaps/level4.json");
   }
 
   init() {

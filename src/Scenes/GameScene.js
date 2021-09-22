@@ -17,7 +17,7 @@ export default class GameScene extends Phaser.Scene {
     backgroundImage.setScale(8, 0.8);
         let map = this.make.tilemap({ key: "map" });
         const tileset = map.addTilesetImage("kenny_simple_platformer", "tiles");
-        const platforms = map.createStaticLayer("Platforms", tileset, 0, 0);
+        const platforms = map.createLayer("Platforms", tileset, 0, 0);
         platforms.setCollisionByExclusion(-1, true);
         this.physics.world.setBounds(
           0,
@@ -25,5 +25,11 @@ export default class GameScene extends Phaser.Scene {
           map.widthInPixels,
           map.heightInPixels
         );
+
+        this.player = this.physics.add.sprite(50, 300, "player");
+        this.player.setBounce(0.1);
+        this.player.body.setSize(55, 75).setOffset(20, 25);
+        this.player.setCollideWorldBounds(true);
+        this.physics.add.collider(this.player, platforms);
   }
 }
