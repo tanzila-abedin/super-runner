@@ -20,6 +20,7 @@ export default class GameScene extends Phaser.Scene {
     const platforms = map.createLayer("Platforms", tileset, 0, 0);
     platforms.setCollisionByExclusion(-1, true);
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+
     // create player
     this.player = this.physics.add.sprite(50, 300, "player");
     this.player.setBounce(0.1);
@@ -54,6 +55,26 @@ export default class GameScene extends Phaser.Scene {
 
     // Input Events for curson and left,right,up and down key.
     this.cursors = this.input.keyboard.createCursorKeys();
+
+    // create rivers
+    this.rivers = this.physics.add.group({
+      allowGravity: false,
+      immovable: true,
+    });
+    const riverObjects = map.getObjectLayer("river")["objects"];
+    riverObjects.forEach((riverObject) => {
+      const river = this.rivers
+        .create(riverObject.x, riverObject.y - 50, "river")
+        .setOrigin(0, 0);
+    });
+
+    // Adding collision between player and rivers
+    this.physics.add.collider(this.player, this.rivers, this.playerHit, null, this);
+
+    // create camera to follow the player
+
+    this.cameras.main.startFollow(this.player, true, true);
+    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
   }
 
   update(){
@@ -97,6 +118,26 @@ export default class GameScene extends Phaser.Scene {
     }
 
   }
+
+  // collision(hit) between player and river OR player and spike 
+   playerHit(player, spike) {
+    this.gameoveraudio.play();
+    this.scoreText.setText("Score: "+score);
+    
+    score -= 10;
+    player.setVelocity(0, 0);
+    player.setX(player.x - 1000);
+    player.setY(300);
+    player.play('idle', true);
+    player.setAlpha(0);
+    let tw = this.tweens.add({
+        targets: player,
+        alpha: 1,
+        duration: 100,
+        ease: 'Linear',
+        repeat: 5,
+    });
+}
 
 
 }
