@@ -15,25 +15,20 @@ export default class GameScene extends Phaser.Scene {
 
     const backgroundImage = this.add.image(0, 0, "background").setOrigin(0, 0);
     backgroundImage.setScale(8, 0.8);
-        let map = this.make.tilemap({ key: "map" });
-        const tileset = map.addTilesetImage("kenny_simple_platformer", "tiles");
-        const platforms = map.createLayer("Platforms", tileset, 0, 0);
-        platforms.setCollisionByExclusion(-1, true);
-        this.physics.world.setBounds(
-          0,
-          0,
-          map.widthInPixels,
-          map.heightInPixels
-        );
+    let map = this.make.tilemap({ key: "map" });
+    const tileset = map.addTilesetImage("kenny_simple_platformer", "tiles");
+    const platforms = map.createLayer("Platforms", tileset, 0, 0);
+    platforms.setCollisionByExclusion(-1, true);
+    this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     // create player
-        this.player = this.physics.add.sprite(50, 300, "player");
-        this.player.setBounce(0.1);
-        this.player.body.setSize(55, 75).setOffset(20, 25);
-        this.player.setCollideWorldBounds(true);
-        this.physics.add.collider(this.player, platforms);
+    this.player = this.physics.add.sprite(50, 300, "player");
+    this.player.setBounce(0.1);
+    this.player.body.setSize(55, 75).setOffset(20, 25);
+    this.player.setCollideWorldBounds(true);
+    this.physics.add.collider(this.player, platforms);
 
     // add animation to player to stay idle, walk or jump
-    
+
     this.anims.create({
       key: "walk",
       frames: this.anims.generateFrameNames("player", {
@@ -57,9 +52,51 @@ export default class GameScene extends Phaser.Scene {
       frameRate: 10,
     });
 
+    // Input Events for curson and left,right,up and down key.
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 
+  update(){
+    // controlling player with keyBoard
+    if (this.cursors.left.isDown) {
+      this.player.setVelocityX(-200);
+
+      if (this.player.body.onFloor()) {
+        this.player.play("walk", true);
+      }
+    } else if (this.cursors.right.isDown) {
+      this.player.setVelocityX(200);
+
+      if (this.player.body.onFloor()) {
+        this.player.play("walk", true);
+      }
+    } else {
+      this.player.setVelocityX(0);
+
+      if (this.player.body.onFloor()) {
+        this.player.play("idle", true);
+      }
+    }
+
+    if (
+      (this.cursors.space.isDown || this.cursors.up.isDown) &&
+      this.player.body.onFloor()
+    ) {
+      this.player.setVelocityY(-600);
+      this.player.play("jump", true);
+    }
+    if (this.cursors.down.isDown && !this.player.body.onFloor()) {
+      this.player.setVelocityY(200);
+      this.player.play("jump", true);
+    }
+
+    if (this.player.body.velocity.x > 0) {
+      this.player.setFlipX(false);
+    } else if (this.player.body.velocity.x < 0) {
+      this.player.setFlipX(true);
+    }
+
+  }
 
 
 }
