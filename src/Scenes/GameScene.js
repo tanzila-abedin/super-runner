@@ -2,9 +2,20 @@ import Phaser from "phaser";
 
 let score = 0;
 let coronaObjects;
+let gameOver = false;
+
+  function hitEnemy(player,corona){
+  this.physics.pause();
+
+  player.setTint(0xff0000);
+
+  player.anims.play("turn");
+
+  gameOver = true;
+  }
 
   // collision(hit) between player and river OR player and enemy
-  function playerHit(player, corona) {
+  function playerHit(player, thorns) {
     // this.gameoveraudio.play();
     this.scoreText.setText("Score: "+score);
     
@@ -136,10 +147,26 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.collider(
       this.player,
       this.coronas,
-      playerHit,
+      hitEnemy,
       null,
       this
     );
+
+    // create thorn object to reduce score
+    this.spikes = this.physics.add.group({
+      allowGravity: false,
+      immovable: true,
+    });
+    const spikeObjects = map.getObjectLayer("spikes")["objects"];
+    spikeObjects.forEach((spikeObject) => {
+      const spike = this.spikes
+        .create(spikeObject.x, spikeObject.y - 60, "spike")
+        .setOrigin(0, 0);
+      spike.body.setSize(spike.width, spike.height - 20).setOffset(0, 20);
+    });
+
+    // Adding collision between player and thorns
+    this.physics.add.collider(this.player, this.spikes, playerHit, null, this);
 
     // Text space for score
 
@@ -156,6 +183,10 @@ export default class GameScene extends Phaser.Scene {
   }
 
   update(){
+
+    if(gameOver){
+    return;
+    }
     // controlling player with keyBoard
     if (this.cursors.left.isDown) {
       this.player.setVelocityX(-200);
