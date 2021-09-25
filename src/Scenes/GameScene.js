@@ -1,8 +1,15 @@
 import Phaser from "phaser";
+import gameConfig from "../Config/config";
 
 let score = 0;
 let coronaObjects;
 let gameOver = false;
+
+export const score = {
+  user: gameConfig.user,
+  score: 0,
+};
+
 
   function hitEnemy(player,corona){
   this.physics.pause();
