@@ -1,4 +1,36 @@
 import Phaser from "phaser";
+
+let score = 0;
+let coronaObjects;
+
+  // collision(hit) between player and river OR player and enemy
+  function playerHit(player, corona) {
+    // this.gameoveraudio.play();
+    this.scoreText.setText("Score: "+score);
+    
+    score -= 10;
+    player.setVelocity(0, 0);
+    player.setX(player.x - 1000);
+    player.setY(300);
+    player.play('idle', true);
+    player.setAlpha(0);
+    let tw = this.tweens.add({
+        targets: player,
+        alpha: 1,
+        duration: 100,
+        ease: 'Linear',
+        repeat: 5,
+    });
+}
+ 
+// increase score when start is collected
+function point(player, jem){
+    // this.fx.play();
+    jem.disableBody(true, true);
+    score+=10;
+    this.scoreText.setText("Score: "+score);
+}
+
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super("Game");
@@ -21,7 +53,7 @@ export default class GameScene extends Phaser.Scene {
     platforms.setCollisionByExclusion(-1, true);
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
-    // create player
+    // create player 
     this.player = this.physics.add.sprite(50, 300, "player");
     this.player.setBounce(0.1);
     this.player.body.setSize(55, 75).setOffset(20, 25);
@@ -56,6 +88,20 @@ export default class GameScene extends Phaser.Scene {
     // Input Events for curson and left,right,up and down key.
     this.cursors = this.input.keyboard.createCursorKeys();
 
+    // Creating jems
+    this.jems = this.physics.add.group({
+      allowGravity: false,
+    });
+    const jemObjects = map.getObjectLayer("jems")["objects"];
+    jemObjects.forEach((jemObject) => {
+      const jem = this.jems
+        .create(jemObject.x, jemObject.y - 50, "jem")
+        .setOrigin(0, 0);
+    });
+
+    // adding collision between player and points(jem)
+    this.physics.add.collider(this.player, this.jems, point, null, this);
+
     // create rivers
     this.rivers = this.physics.add.group({
       allowGravity: false,
@@ -64,29 +110,44 @@ export default class GameScene extends Phaser.Scene {
     const riverObjects = map.getObjectLayer("river")["objects"];
     riverObjects.forEach((riverObject) => {
       const river = this.rivers
-        .create(riverObject.x, riverObject.y - 50, "river")
+        .create(riverObject.x, riverObject.y - 55, "river")
         .setOrigin(0, 0);
     });
 
     // Adding collision between player and rivers
+    this.physics.add.collider(this.player, this.rivers, playerHit, null, this);
+
+    // create enemyObject
+    this.coronas = this.physics.add.group({
+      allowGravity: false,
+      immovable: true,
+    });
+    coronaObjects = map.getObjectLayer("corona")["objects"];
+    coronaObjects.forEach((coronaObject) => {
+    let corona = this.coronas
+        .create(coronaObject.x, coronaObject.y - 50, "corona")
+        .setOrigin(0, 0);
+      corona.setScale(0.1, 0.1);
+      corona.setBounce(1);
+      corona.setVelocityY(100);
+      corona.setCollideWorldBounds(true);
+    });
+    // Adding collision between player and corona object
     this.physics.add.collider(
       this.player,
-      this.rivers,
-      this.playerHit,
+      this.coronas,
+      playerHit,
       null,
       this
     );
 
-    // Creating jems 
-    this.jems = this.physics.add.group({
-      allowGravity: false,
+    // Text space for score
+
+    this.scoreText = this.add.text(16, 16, "Score: " + score, {
+      fontSize: "32px",
+      fill: "#000000",
     });
-    const jemObjects = map.getObjectLayer("jems")["objects"];
-    jemObjects.forEach((jemObject) => {
-    const jem = this.jems
-        .create(jemObject.x, jemObject.y - 50, "jem")
-        .setOrigin(0, 0);
-    });
+    this.scoreText.setScrollFactor(0);
 
     // create camera to follow the player
 
@@ -135,26 +196,5 @@ export default class GameScene extends Phaser.Scene {
     }
 
   }
-
-  // collision(hit) between player and river OR player and spike 
-   playerHit(player, spike) {
-    this.gameoveraudio.play();
-    this.scoreText.setText("Score: "+score);
-    
-    score -= 10;
-    player.setVelocity(0, 0);
-    player.setX(player.x - 1000);
-    player.setY(300);
-    player.play('idle', true);
-    player.setAlpha(0);
-    let tw = this.tweens.add({
-        targets: player,
-        alpha: 1,
-        duration: 100,
-        ease: 'Linear',
-        repeat: 5,
-    });
-}
-
 
 }
