@@ -1,3 +1,5 @@
+import "jest-canvas-mock";
+
 import Phaser from "phaser";
 import Model from "./Model";
 import config from "./Config/config";

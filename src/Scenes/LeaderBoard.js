@@ -17,7 +17,7 @@ const getScores = () => {
   getUsers().then((data) => {
     scores = data.result
   }).catch((err) => {
-    throw new Error('Error:', err)
+    throw new Error('Error:',err)
   }) 
 }
 

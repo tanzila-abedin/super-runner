@@ -6,7 +6,6 @@ import preloader from './PreloaderScene'
 export default class TitleScene extends Phaser.Scene {
   constructor() {
     super("Title");
-    console.log("title")
   }
   create() {
     // Game
