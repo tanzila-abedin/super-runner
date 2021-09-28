@@ -76,6 +76,9 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.audio("bgMusic", ["src/assets/TownTheme.mp3"]);
 
     // game background
+
+    this.load.html("form", "src/assets/form.html");
+
     this.load.image("background", "src/assets/game/background.png");
     this.load.image("spike", "src/assets/game/spike.png");
     this.load.image("fullscreen", "src/assets/game/fullsc.png");
