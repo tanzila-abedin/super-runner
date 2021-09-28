@@ -1,11 +1,11 @@
 import Phaser from "phaser";
 import gameConfig from "../Config/config";
 
-let score = 0;
+// let score = 0;
 let coronaObjects;
 let gameOver = false;
 
-export const score = {
+export const gameScore = {
   user: gameConfig.user,
   score: 0,
 };
@@ -16,15 +16,15 @@ export const score = {
 
   player.setTint(0xff0000);
 
-  player.anims.play("turn");
+  player.anims.play("death");
 
   gameOver = true;
   }
 
   // collision(hit) between player and river OR player and enemy
-  function playerHit(player, thorns) {
+  function playerHit(player, spike) {
     // this.gameoveraudio.play();
-    this.scoreText.setText("Score: "+score);
+    this.scoreText.setText("Score: "+ gameScore.score);
     
     score -= 10;
     player.setVelocity(0, 0);
@@ -45,8 +45,8 @@ export const score = {
 function point(player, jem){
     // this.fx.play();
     jem.disableBody(true, true);
-    score+=10;
-    this.scoreText.setText("Score: "+score);
+    gameScore.score+=10;
+    this.scoreText.setText("Score: "+ gameScore.score);
 }
 
 export default class GameScene extends Phaser.Scene {
@@ -100,6 +100,12 @@ export default class GameScene extends Phaser.Scene {
     this.anims.create({
       key: "jump",
       frames: [{ key: "player", frame: "robo_player_1" }],
+      frameRate: 10,
+    });
+
+    this.anims.create({
+      key: "death",
+      frames: [{ key: "player", frame: "robo_player_6" }],
       frameRate: 10,
     });
 
@@ -177,11 +183,16 @@ export default class GameScene extends Phaser.Scene {
 
     // Text space for score
 
-    this.scoreText = this.add.text(16, 16, "Score: " + score, {
+    this.scoreText = this.add.text(16,43, "Score: " + gameScore.score, {
+      fontSize: "32px",
+      fill: "#000000",
+    });
+    this.nameText = this.add.text(16,16, `${gameConfig.user}`, {
       fontSize: "32px",
       fill: "#000000",
     });
     this.scoreText.setScrollFactor(0);
+    this.nameText.setScrollFactor(0);
 
     // create camera to follow the player
 
@@ -192,7 +203,13 @@ export default class GameScene extends Phaser.Scene {
   update(){
 
     if(gameOver){
-    return;
+      gameScore.user = gameConfig.user;
+      this.scene.transition({
+        target: "End",
+        duration: 3000,
+        remove: true,
+      });
+      return;
     }
     // controlling player with keyBoard
     if (this.cursors.left.isDown) {
