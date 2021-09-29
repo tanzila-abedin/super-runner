@@ -6,7 +6,6 @@ import 'regenerator-runtime/runtime';
 export default class endScene extends Phaser.Scene {
   constructor() {
     super('End');
-    console.log('end');
   }
 
   create() {

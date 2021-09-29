@@ -5,12 +5,17 @@ import gameConfig from '../Config/config';
 let coronaObjects;
 let gameOver = false;
 let corona;
+let spike;
+// let jem;
+// let river;
+
 export const gameScore = {
   user: gameConfig.user,
   score: 0,
 };
 
-function hitEnemy(player, corona) {
+// collision between player and corona
+function hitEnemy(player) {
   this.physics.pause();
 
   player.setTint(0xff0000);
@@ -21,7 +26,7 @@ function hitEnemy(player, corona) {
 }
 
 // collision(hit) between player and river OR player and enemy
-function playerHit(player, spike) {
+function playerHit(player) {
   // this.gameoveraudio.play();
   this.scoreText.setText(`Score: ${gameScore.score}`);
 
@@ -31,7 +36,7 @@ function playerHit(player, spike) {
   player.setY(300);
   player.play('idle', true);
   player.setAlpha(0);
-  const tw = this.tweens.add({
+  this.tweens.add({
     targets: player,
     alpha: 1,
     duration: 100,
@@ -51,12 +56,6 @@ function point(player, jem) {
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super('Game');
-  }
-
-  preload() {
-    // load images
-    // this.load.image("logo", "src/assets/logo.png");
-
   }
 
   create() {
@@ -119,7 +118,7 @@ export default class GameScene extends Phaser.Scene {
     });
     const jemObjects = map.getObjectLayer('jems').objects;
     jemObjects.forEach((jemObject) => {
-      const jem = this.jems
+      this.jems
         .create(jemObject.x, jemObject.y - 50, 'jem')
         .setOrigin(0, 0);
     });
@@ -134,7 +133,7 @@ export default class GameScene extends Phaser.Scene {
     });
     const riverObjects = map.getObjectLayer('river').objects;
     riverObjects.forEach((riverObject) => {
-      const river = this.rivers
+      this.rivers
         .create(riverObject.x, riverObject.y - 55, 'river')
         .setOrigin(0, 0);
     });
@@ -173,7 +172,7 @@ export default class GameScene extends Phaser.Scene {
     });
     const spikeObjects = map.getObjectLayer('spikes').objects;
     spikeObjects.forEach((spikeObject) => {
-      const spike = this.spikes
+      spike = this.spikes
         .create(spikeObject.x, spikeObject.y - 60, 'spike')
         .setOrigin(0, 0);
       spike.body.setSize(spike.width, spike.height - 20).setOffset(0, 20);
