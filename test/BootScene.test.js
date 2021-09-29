@@ -1,5 +1,6 @@
 import BootScene from "../src/Scenes/BootScene";
 
+
 jest.mock("../src/Scenes/BootScene");
 
 beforeEach(() => {

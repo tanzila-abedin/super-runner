@@ -5,7 +5,6 @@
   "main": "src/index.js",
   "jest": {
     "setupFiles": [
-      "./src/index.js",
       "jest-canvas-mock"
     ]
   },
