@@ -46,7 +46,7 @@ export default class endScene extends Phaser.Scene {
     resetButton.setInteractive();
 
     resetButton.on('pointerdown', () => {
-            this.scene.start("Title");
+      this.scene.start('Title');
     });
   }
 }
