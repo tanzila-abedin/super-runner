@@ -88,8 +88,6 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('jem', 'src/assets/game/star.png');
     this.load.image('river', 'src/assets/game/river.png');
     this.load.image('gameover', 'src/assets/game/gameover.jpg');
-    this.load.image('vaccine', 'src/assets/game/vaccine.png');
-    this.load.image('win', 'src/assets/game/win.jpg');
 
     // Load player
 

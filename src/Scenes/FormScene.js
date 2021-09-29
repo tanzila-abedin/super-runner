@@ -12,7 +12,8 @@ export default class LoginScene extends Phaser.Scene {
       .createFromCache('form');
     element.addListener('click');
 
-    element.on('click', () => {
+    element.on('click', (e) => {
+      e.preventDefault();
       const inputText = document.querySelector('.nameInput');
       if (inputText.value !== '') {
         gameConfig.user = inputText.value;
