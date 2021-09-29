@@ -12,7 +12,7 @@ Additional description about the project and its features.
 
 View the GGD [here](GDD.md)
 
-## Built Withbuild/superRunneSS.png
+## Built With
 
 - JavaScript
 - Phaser
