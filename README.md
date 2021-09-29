@@ -1,6 +1,6 @@
 # Phaser Platform Game
 
-[Click here to view live demo](https://github.com/tanzila-abedin/super-runner.git)
+[Click here to view live demo](https://tanzila-abedin.github.io/super-runner/)
 
 A platform game built with Phaser JS.
 
