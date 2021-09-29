@@ -1,49 +1,59 @@
-# Phaser 3 Super Runner
+# Phaser Platform Game
 
-A Phaser 3 project template with ES6 support via [Babel 7](https://babeljs.io/) and [Webpack 4](https://webpack.js.org/) that includes hot-reloading for development and production-ready builds.
+[Click here to view live demo](https://github.com/tanzila-abedin/super-runner.git)
 
-This has been updated for Phaser 3.50.0 version and above.
+A platform game built with Phaser JS.
 
-Loading images via JavaScript module `import` is also supported, although not recommended.
+One may collect gems while trying to escape enemy object and spikes along the way. Make use of arrow keys to move in different directions.
 
-## Requirements
+![screenshot](./src/assets/superRunneSS.png)
 
-[Node.js](https://nodejs.org) is required to install dependencies and run scripts via `npm`.
+Additional description about the project and its features.
 
-## Available Commands
+View the GGD [here](GDD.md)
 
-| Command | Description |
-|---------|-------------|
-| `npm install` | Install project dependencies |
-| `npm start` | Build project and open web server running project |
-| `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
+## Built Withbuild/superRunneSS.png
 
-## Writing Code
+- JavaScript
+- Phaser
 
-After cloning the repo, run `npm install` from your project directory. Then, you can start the local development server by running `npm start`.
+## Getting Started
 
-After starting the development server with `npm start`, you can edit any files in the `src` folder and webpack will automatically recompile and reload your server (available at `http://localhost:8080` by default).
+- Download or clone this repo by using `git clone `
+- Enter the project folder and run `npm i`.
+- To run the tests, run `npm run test`.
+- To run the local server, run `npm run start`.
 
-## Customizing the Template
 
-### Babel
+## Author
 
-You can write modern ES6+ JavaScript and Babel will transpile it to a version of JavaScript that you want your project to support. The targeted browsers are set in the `.babelrc` file and the default currently targets all browsers with total usage over "0.25%" but excludes IE11 and Opera Mini.
+👤 **Ryel Banfield**
 
- ```
-"browsers": [
-  ">0.25%",
-  "not ie 11",
-  "not op_mini all"
-]
- ```
+- GitHub: [@RyelBanfield](https://github.com/ryelbanfield)
+- Twitter: [@RyelBanfield](https://twitter.com/ryelbanfield)
+- LinkedIn: [Ryel Banfield](https://www.linkedin.com/in/ryel-banfield/)
 
-### Webpack
+## 🤝 Contributing
 
-If you want to customize your build, such as adding a new webpack loader or plugin (i.e. for loading CSS or fonts), you can modify the `webpack/base.js` file for cross-project changes, or you can modify and/or create new configuration files and target them in specific npm tasks inside of `package.json'.
+Contributions, issues, and feature requests are welcome!
 
-## Deploying Code
+Feel free to check the [issues page](../../issues/).
 
-After you run the `npm run build` command, your code will be built into a single bundle located at `dist/bundle.min.js` along with any other assets you project depended. 
+## Show your support
 
-If you put the contents of the `dist` folder in a publicly-accessible location (say something like `http://mycoolserver.com`), you should be able to open `http://mycoolserver.com/index.html` and play your game.
+Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc
+
+## 📝 License
+
+This project is [MIT](LICENSE) licensed.
+
+I’m Not What I Thought by Darren Curtis
+Creative Commons Attribution 3.0 Unported License
+https://creativecommons.org/licenses/by/3.0/
+Music promoted by https://www.chosic.com/
