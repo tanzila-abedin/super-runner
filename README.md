@@ -20,10 +20,10 @@ View the GGD [here](GDD.md)
 ## Getting Started
 
 - Download or clone this repo by using `git clone `
-- Enter the project folder and run `npm i`.
-- To run the tests, run `npm run test`.
-- Run `npx webpack` to bundle the files in the build folder
-
+- Run `npm install`
+- Run `npm run build` to bundle the files in the src folder & product ouput in build folder
+- Run `npm run watch` & Go to the dist folder and open index.html
+- To test run `npm test`
 
 ## Author
 
