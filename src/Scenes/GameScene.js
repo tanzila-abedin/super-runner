@@ -1,78 +1,79 @@
-import Phaser from "phaser";
-import gameConfig from "../Config/config";
+import Phaser from 'phaser';
+import gameConfig from '../Config/config';
 
 // let score = 0;
 let coronaObjects;
 let gameOver = false;
-
+let corona;
 export const gameScore = {
   user: gameConfig.user,
   score: 0,
 };
 
-
-  function hitEnemy(player,corona){
+function hitEnemy(player, corona) {
   this.physics.pause();
 
   player.setTint(0xff0000);
 
-  player.anims.play("death");
+  player.anims.play('death');
 
   gameOver = true;
-  }
-
-  // collision(hit) between player and river OR player and enemy
-  function playerHit(player, spike) {
-    // this.gameoveraudio.play();
-    this.scoreText.setText("Score: "+ gameScore.score);
-    
-    score -= 10;
-    player.setVelocity(0, 0);
-    player.setX(player.x - 1000);
-    player.setY(300);
-    player.play('idle', true);
-    player.setAlpha(0);
-    let tw = this.tweens.add({
-        targets: player,
-        alpha: 1,
-        duration: 100,
-        ease: 'Linear',
-        repeat: 5,
-    });
 }
- 
+
+// collision(hit) between player and river OR player and enemy
+function playerHit(player, spike) {
+  // this.gameoveraudio.play();
+  this.scoreText.setText(`Score: ${gameScore.score}`);
+
+  gameScore.score -= 10;
+  player.setVelocity(0, 0);
+  player.setX(player.x - 1000);
+  player.setY(300);
+  player.play('idle', true);
+  player.setAlpha(0);
+  const tw = this.tweens.add({
+    targets: player,
+    alpha: 1,
+    duration: 100,
+    ease: 'Linear',
+    repeat: 5,
+  });
+}
+
 // increase score when start is collected
-function point(player, jem){
-    // this.fx.play();
-    jem.disableBody(true, true);
-    gameScore.score+=10;
-    this.scoreText.setText("Score: "+ gameScore.score);
+function point(player, jem) {
+  // this.fx.play();
+  jem.disableBody(true, true);
+  gameScore.score += 10;
+  this.scoreText.setText(`Score: ${gameScore.score}`);
 }
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
-    super("Game");
+    super('Game');
   }
+
   preload() {
     // load images
     // this.load.image("logo", "src/assets/logo.png");
-    
+
   }
+
   create() {
     // this.add.image(400, 300, "logo");
 
     // Creating game background assets using tilemap
 
-    const backgroundImage = this.add.image(0, 0, "background").setOrigin(0, 0);
+    const backgroundImage = this.add.image(0, 0, 'background').setOrigin(0, 0);
     backgroundImage.setScale(8, 0.8);
-    let map = this.make.tilemap({ key: "map" });
-    const tileset = map.addTilesetImage("kenny_simple_platformer", "tiles");
-    const platforms = map.createLayer("Platforms", tileset, 0, 0);
+    const map = this.make.tilemap({ key: 'map' });
+    const tileset = map.addTilesetImage('kenny_simple_platformer', 'tiles');
+    const platforms = map.createLayer('Platforms', tileset, 0, 0);
     platforms.setCollisionByExclusion(-1, true);
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
-    // create player 
-    this.player = this.physics.add.sprite(50, 300, "player");
+    // create player
+    this.player = this.physics.add.sprite(50, 300, 'player');
     this.player.setBounce(0.1);
     this.player.body.setSize(55, 75).setOffset(20, 25);
     this.player.setCollideWorldBounds(true);
@@ -81,9 +82,9 @@ export default class GameScene extends Phaser.Scene {
     // add animation to player to stay idle, walk or jump
 
     this.anims.create({
-      key: "walk",
-      frames: this.anims.generateFrameNames("player", {
-        prefix: "robo_player_",
+      key: 'walk',
+      frames: this.anims.generateFrameNames('player', {
+        prefix: 'robo_player_',
         start: 2,
         end: 3,
       }),
@@ -92,20 +93,20 @@ export default class GameScene extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: "idle",
-      frames: [{ key: "player", frame: "robo_player_0" }],
+      key: 'idle',
+      frames: [{ key: 'player', frame: 'robo_player_0' }],
       frameRate: 10,
     });
 
     this.anims.create({
-      key: "jump",
-      frames: [{ key: "player", frame: "robo_player_1" }],
+      key: 'jump',
+      frames: [{ key: 'player', frame: 'robo_player_1' }],
       frameRate: 10,
     });
 
     this.anims.create({
-      key: "death",
-      frames: [{ key: "player", frame: "robo_player_6" }],
+      key: 'death',
+      frames: [{ key: 'player', frame: 'robo_player_6' }],
       frameRate: 10,
     });
 
@@ -116,10 +117,10 @@ export default class GameScene extends Phaser.Scene {
     this.jems = this.physics.add.group({
       allowGravity: false,
     });
-    const jemObjects = map.getObjectLayer("jems")["objects"];
+    const jemObjects = map.getObjectLayer('jems').objects;
     jemObjects.forEach((jemObject) => {
       const jem = this.jems
-        .create(jemObject.x, jemObject.y - 50, "jem")
+        .create(jemObject.x, jemObject.y - 50, 'jem')
         .setOrigin(0, 0);
     });
 
@@ -131,10 +132,10 @@ export default class GameScene extends Phaser.Scene {
       allowGravity: false,
       immovable: true,
     });
-    const riverObjects = map.getObjectLayer("river")["objects"];
+    const riverObjects = map.getObjectLayer('river').objects;
     riverObjects.forEach((riverObject) => {
       const river = this.rivers
-        .create(riverObject.x, riverObject.y - 55, "river")
+        .create(riverObject.x, riverObject.y - 55, 'river')
         .setOrigin(0, 0);
     });
 
@@ -146,10 +147,10 @@ export default class GameScene extends Phaser.Scene {
       allowGravity: false,
       immovable: true,
     });
-    coronaObjects = map.getObjectLayer("corona")["objects"];
+    coronaObjects = map.getObjectLayer('corona').objects;
     coronaObjects.forEach((coronaObject) => {
-    let corona = this.coronas
-        .create(coronaObject.x, coronaObject.y - 50, "corona")
+      corona = this.coronas
+        .create(coronaObject.x, coronaObject.y - 50, 'corona')
         .setOrigin(0, 0);
       corona.setScale(0.1, 0.1);
       corona.setBounce(1);
@@ -162,7 +163,7 @@ export default class GameScene extends Phaser.Scene {
       this.coronas,
       hitEnemy,
       null,
-      this
+      this,
     );
 
     // create thorn object to reduce score
@@ -170,10 +171,10 @@ export default class GameScene extends Phaser.Scene {
       allowGravity: false,
       immovable: true,
     });
-    const spikeObjects = map.getObjectLayer("spikes")["objects"];
+    const spikeObjects = map.getObjectLayer('spikes').objects;
     spikeObjects.forEach((spikeObject) => {
       const spike = this.spikes
-        .create(spikeObject.x, spikeObject.y - 60, "spike")
+        .create(spikeObject.x, spikeObject.y - 60, 'spike')
         .setOrigin(0, 0);
       spike.body.setSize(spike.width, spike.height - 20).setOffset(0, 20);
     });
@@ -183,13 +184,13 @@ export default class GameScene extends Phaser.Scene {
 
     // Text space for score
 
-    this.scoreText = this.add.text(16,43, "Score: " + gameScore.score, {
-      fontSize: "32px",
-      fill: "#000000",
+    this.scoreText = this.add.text(16, 43, `Score: ${gameScore.score}`, {
+      fontSize: '32px',
+      fill: '#000000',
     });
-    this.nameText = this.add.text(16,16, `${gameConfig.user}`, {
-      fontSize: "32px",
-      fill: "#000000",
+    this.nameText = this.add.text(16, 16, `${gameConfig.user}`, {
+      fontSize: '32px',
+      fill: '#000000',
     });
     this.scoreText.setScrollFactor(0);
     this.nameText.setScrollFactor(0);
@@ -200,12 +201,11 @@ export default class GameScene extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
   }
 
-  update(){
-
-    if(gameOver){
+  update() {
+    if (gameOver) {
       gameScore.user = gameConfig.user;
       this.scene.transition({
-        target: "End",
+        target: 'End',
         duration: 3000,
         remove: true,
       });
@@ -216,32 +216,32 @@ export default class GameScene extends Phaser.Scene {
       this.player.setVelocityX(-200);
 
       if (this.player.body.onFloor()) {
-        this.player.play("walk", true);
+        this.player.play('walk', true);
       }
     } else if (this.cursors.right.isDown) {
       this.player.setVelocityX(200);
 
       if (this.player.body.onFloor()) {
-        this.player.play("walk", true);
+        this.player.play('walk', true);
       }
     } else {
       this.player.setVelocityX(0);
 
       if (this.player.body.onFloor()) {
-        this.player.play("idle", true);
+        this.player.play('idle', true);
       }
     }
 
     if (
-      (this.cursors.space.isDown || this.cursors.up.isDown) &&
-      this.player.body.onFloor()
+      (this.cursors.space.isDown || this.cursors.up.isDown)
+      && this.player.body.onFloor()
     ) {
       this.player.setVelocityY(-600);
-      this.player.play("jump", true);
+      this.player.play('jump', true);
     }
     if (this.cursors.down.isDown && !this.player.body.onFloor()) {
       this.player.setVelocityY(200);
-      this.player.play("jump", true);
+      this.player.play('jump', true);
     }
 
     if (this.player.body.velocity.x > 0) {
@@ -249,7 +249,5 @@ export default class GameScene extends Phaser.Scene {
     } else if (this.player.body.velocity.x < 0) {
       this.player.setFlipX(true);
     }
-
   }
-
 }
