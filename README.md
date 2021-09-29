@@ -22,16 +22,18 @@ View the GGD [here](GDD.md)
 - Download or clone this repo by using `git clone `
 - Enter the project folder and run `npm i`.
 - To run the tests, run `npm run test`.
-- To run the local server, run `npm run start`.
+- Run `npx webpack` to bundle the files in the build folder
 
 
 ## Author
 
-👤 **Ryel Banfield**
+👤 **Tanzila**
 
-- GitHub: [@RyelBanfield](https://github.com/ryelbanfield)
-- Twitter: [@RyelBanfield](https://twitter.com/ryelbanfield)
-- LinkedIn: [Ryel Banfield](https://www.linkedin.com/in/ryel-banfield/)
+![Tanzila's GitHub stats](https://github-readme-stats.vercel.app/api?username=tanzila-abedin&count_private=true&theme=dark&show_icons=true)
+
+- GitHub: [@githubhandle](https://github.com/tanzila-abedin)
+- Twitter: [@twitterhandle](https://twitter.com/TanzilaAbedin)
+- LinkedIn: [Profile](https://www.linkedin.com/in/tanzila-abedin-331440b2/)
 
 ## 🤝 Contributing
 
@@ -52,8 +54,3 @@ Give a ⭐️ if you like this project!
 ## 📝 License
 
 This project is [MIT](LICENSE) licensed.
-
-I’m Not What I Thought by Darren Curtis
-Creative Commons Attribution 3.0 Unported License
-https://creativecommons.org/licenses/by/3.0/
-Music promoted by https://www.chosic.com/
