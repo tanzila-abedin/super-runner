@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import Button from '../Objects/Button';
 import config from '../Config/config';
-import preloader from './PreloaderScene';
 
 export default class TitleScene extends Phaser.Scene {
   constructor() {

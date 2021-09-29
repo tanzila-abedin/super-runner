@@ -10,7 +10,6 @@ export default class LoginScene extends Phaser.Scene {
     const element = this.add
       .dom(window.innerWidth / 2, window.innerHeight / 6)
       .createFromCache('form');
-    console.log(element);
     element.addListener('click');
 
     element.on('click', () => {
