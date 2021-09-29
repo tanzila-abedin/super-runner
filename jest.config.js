@@ -1,4 +1,4 @@
 module.exports = {
-  testEnvironment: "jsdom",
-  setupFilesAfterEnv: ["jest-canvas-mock"],
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['jest-canvas-mock'],
 };

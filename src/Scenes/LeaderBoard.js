@@ -1,10 +1,9 @@
-import Phaser from "phaser";
-import config from "../Config/config";
-import Button from "../Objects/Button";
-import "regenerator-runtime/runtime";
+import Phaser from 'phaser';
+import config from '../Config/config';
+import Button from '../Objects/Button';
+import 'regenerator-runtime/runtime';
 
-let url =
-  "https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/L6RXz9spc5gYV37930Ga/scores/";
+const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/L6RXz9spc5gYV37930Ga/scores/';
 let scores;
 
 const getUsers = async () => {
@@ -15,17 +14,17 @@ const getUsers = async () => {
 
 const getScores = () => {
   getUsers().then((data) => {
-    scores = data.result
+    scores = data.result;
   }).catch((err) => {
-    throw new Error('Error:',err)
-  }) 
-}
+    throw new Error('Error:', err);
+  });
+};
 
 getScores();
 let placement = config.height / 2;
 export default class leaderBoardScene extends Phaser.Scene {
   constructor() {
-    super("Leaderboard");
+    super('Leaderboard');
   }
 
   create() {
@@ -33,10 +32,10 @@ export default class leaderBoardScene extends Phaser.Scene {
       this,
       config.width / 2,
       100,
-      "blueButton1",
-      "blueButton2",
-      "Home",
-      "Title"
+      'blueButton1',
+      'blueButton2',
+      'Home',
+      'Title',
     );
 
     scores
@@ -47,7 +46,7 @@ export default class leaderBoardScene extends Phaser.Scene {
           config.width / 2 - 100,
           placement,
           `${score.user} ${score.score}`,
-          { fontSize: "42px", fill: "#fff" }
+          { fontSize: '42px', fill: '#fff' },
         );
         placement += 50;
       });
