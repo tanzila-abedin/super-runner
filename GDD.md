@@ -12,7 +12,7 @@
   - Day 5: Prepare leaderbaord feature with leaderboard API, testing game, fixing bugs and deployment.
 
 ### Game Levels
-- To  collect the start the player has to move pass the enemy objects and not collide with the spikes.
+- To  collect the stars the player has to move pass the enemy objects and not collide with the spikes.
 
 ### Assets
 - The assets used in this game (sound effects, background music, animation sprites) have been take from around the internet but were all free to use for any purpose.
