@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import gameConfig from '../Config/config';
-import GameScene from "./GameScene";
+import GameScene from './GameScene';
 
 export default class FormScene extends Phaser.Scene {
   constructor() {
@@ -17,10 +17,9 @@ export default class FormScene extends Phaser.Scene {
       e.preventDefault();
       const inputText = document.querySelector('.nameInput');
       if (inputText.value !== '') {
-        console.log("name");
         gameConfig.user = inputText.value;
         this.scene.add('Game', GameScene);
-        this.scene.start("Game");
+        this.scene.start('Game');
       }
     });
   }

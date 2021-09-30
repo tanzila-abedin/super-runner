@@ -6,7 +6,6 @@
   "jest": {
     "automock": false,
     "setupFiles": [
-      "./setupJest.js",
       "jest-canvas-mock"
     ]
   },

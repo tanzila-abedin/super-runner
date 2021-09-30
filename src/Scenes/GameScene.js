@@ -22,48 +22,49 @@ export default class GameScene extends Phaser.Scene {
     gameScore.score = 0;
   }
 
-// collision between player and corona
-hitEnemy(player){
-  this.physics.pause();
+  // collision between player and corona
+  hitEnemy(player) {
+    this.physics.pause();
 
-  player.setTint(0xff0000);
+    player.setTint(0xff0000);
 
-  player.anims.play('death');
+    player.anims.play('death');
 
-  this.gameOver = true;
-}
+    this.gameOver = true;
+  }
 
   // collision(hit) between player and river OR player and enemy
-playerHit(player){
+  playerHit(player) {
   // this.gameoveraudio.play();
-  scoreText.setText(`Score: ${gameScore.score}`);
+    scoreText.setText(`Score: ${gameScore.score}`);
 
-  gameScore.score -= 10;
-  player.setVelocity(0, 0);
-  player.setX(player.x - 1000);
-  player.setY(300);
-  player.play('idle', true);
-  player.setAlpha(0);
-  this.tweens.add({
-    targets: player,
-    alpha: 1,
-    duration: 100,
-    ease: 'Linear',
-    repeat: 5,
-  });
-}
+    gameScore.score -= 10;
+    player.setVelocity(0, 0);
+    player.setX(player.x - 1000);
+    player.setY(300);
+    player.play('idle', true);
+    player.setAlpha(0);
+    this.tweens.add({
+      targets: player,
+      alpha: 1,
+      duration: 100,
+      ease: 'Linear',
+      repeat: 5,
+    });
+  }
 
-// increase score when start is collected
-point(player, jem){
-  // this.fx.play();
-  jem.disableBody(true, true);
-  gameScore.score += 10;
-  scoreText.setText(`Score: ${gameScore.score}`);
-}
+  // increase score when start is collected
+  point(player, jem) {
+    this.fx.play();
+    jem.disableBody(true, true);
+    gameScore.score += 10;
+    scoreText.setText(`Score: ${gameScore.score}`);
+  }
 
   create() {
-    // this.add.image(400, 300, "logo");
-    console.log('game create')
+    // add audio when gem is hit
+    this.fx = this.sound.add('jemEat');
+
     // Creating game background assets using tilemap
 
     const backgroundImage = this.add.image(0, 0, 'background').setOrigin(0, 0);
@@ -252,5 +253,4 @@ point(player, jem){
       this.player.setFlipX(true);
     }
   }
-
 }
