@@ -3,7 +3,7 @@ import gameConfig from '../Config/config';
 
 // let score = 0;
 let coronaObjects;
-let gameOver = false;
+// let gameOver = false;
 let corona;
 let spike;
 let scoreText;
@@ -15,49 +15,11 @@ export const gameScore = {
   user: gameConfig.user,
   score: 0,
 };
-
-// collision between player and corona
-// const hitEnemy = (player) => {
-//   this.physics.pause();
-
-//   player.setTint(0xff0000);
-
-//   player.anims.play('death');
-
-//   gameOver = true;
-// }
-
-// // collision(hit) between player and river OR player and enemy
-// const playerHit = (player) => {
-//   // this.gameoveraudio.play();
-//   scoreText.setText(`Score: ${gameScore.score}`);
-
-//   gameScore.score -= 10;
-//   player.setVelocity(0, 0);
-//   player.setX(player.x - 1000);
-//   player.setY(300);
-//   player.play('idle', true);
-//   player.setAlpha(0);
-//   this.tweens.add({
-//     targets: player,
-//     alpha: 1,
-//     duration: 100,
-//     ease: 'Linear',
-//     repeat: 5,
-//   });
-// }
-
-// // increase score when start is collected
-// const point = (player, jem) => {
-//   // this.fx.play();
-//   jem.disableBody(true, true);
-//   gameScore.score += 10;
-//   scoreText.setText(`Score: ${gameScore.score}`);
-// }
-
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super('Game');
+    this.gameOver = false;
+    gameScore.score = 0;
   }
 
 // collision between player and corona
@@ -68,7 +30,7 @@ hitEnemy(player){
 
   player.anims.play('death');
 
-  gameOver = true;
+  this.gameOver = true;
 }
 
   // collision(hit) between player and river OR player and enemy
@@ -91,7 +53,6 @@ playerHit(player){
   });
 }
 
-
 // increase score when start is collected
 point(player, jem){
   // this.fx.play();
@@ -102,7 +63,7 @@ point(player, jem){
 
   create() {
     // this.add.image(400, 300, "logo");
-
+    console.log('game create')
     // Creating game background assets using tilemap
 
     const backgroundImage = this.add.image(0, 0, 'background').setOrigin(0, 0);
@@ -243,7 +204,7 @@ point(player, jem){
   }
 
   update() {
-    if (gameOver) {
+    if (this.gameOver) {
       gameScore.user = gameConfig.user;
       this.scene.transition({
         target: 'End',
