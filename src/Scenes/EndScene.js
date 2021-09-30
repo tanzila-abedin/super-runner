@@ -3,7 +3,7 @@ import gameConfig from '../Config/config';
 import { gameScore } from './GameScene';
 import 'regenerator-runtime/runtime';
 
-export default class endScene extends Phaser.Scene {
+export default class EndScene extends Phaser.Scene {
   constructor() {
     super('End');
   }
@@ -82,7 +82,7 @@ export default class endScene extends Phaser.Scene {
     resetButton.setInteractive();
 
     resetButton.on('pointerdown', () => {
-      this.scene.start('Title');
+       window.location.reload(); 
     });
   }
 }
