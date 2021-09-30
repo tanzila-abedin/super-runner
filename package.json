@@ -4,7 +4,9 @@
   "description": "A Phaser 3 Project Template",
   "main": "src/index.js",
   "jest": {
+    "automock": false,
     "setupFiles": [
+      "./setupJest.js",
       "jest-canvas-mock"
     ]
   },
@@ -53,6 +55,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "axios": "^0.21.4",
     "phaser": "^3.50.0",
     "regenerator-runtime": "^0.13.9"
   },

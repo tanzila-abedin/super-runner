@@ -1,29 +1,29 @@
 import Phaser from 'phaser';
 import config from '../Config/config';
 import Button from '../Objects/Button';
+import axios from 'axios';
 import 'regenerator-runtime/runtime';
 
 const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/L6RXz9spc5gYV37930Ga/scores/';
 let scores;
 
 const getUsers = async () => {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data;
+  const response = await axios.get(url);
+  return response.data;
 };
 
-const getScores = () => {
-  getUsers().then((data) => {
+const getScores = async() => {
+ try {const data = await getUsers()
     scores = data.result;
-  }).catch((err) => {
-    throw new Error('Error:', err);
-  });
-};
+}catch(err){
+  console.error(err)
+}
+}
 
 getScores();
 
 let placement = config.height / 2;
-export default class leaderBoardScene extends Phaser.Scene {
+export default class LeaderBoard extends Phaser.Scene {
   constructor() {
     super('Leaderboard');
   }

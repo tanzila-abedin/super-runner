@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import gameConfig from '../Config/config';
 import { gameScore } from './GameScene';
+import axios from "axios";
 import 'regenerator-runtime/runtime';
 
 export default class EndScene extends Phaser.Scene {
@@ -47,17 +48,9 @@ export default class EndScene extends Phaser.Scene {
     const postScore = async(score) => {
       const url =
         "https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/L6RXz9spc5gYV37930Ga/scores/";
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(score),
-      });
-    return response.json();
+      const response = await axios.post(url, score);
+      return response.data;
     }
-
-
     postScore(gameScore)
 
     this.add.text(
