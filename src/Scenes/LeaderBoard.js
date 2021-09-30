@@ -21,6 +21,7 @@ const getScores = () => {
 };
 
 getScores();
+
 let placement = config.height / 2;
 export default class leaderBoardScene extends Phaser.Scene {
   constructor() {
@@ -50,5 +51,6 @@ export default class leaderBoardScene extends Phaser.Scene {
         );
         placement += 50;
       });
+      console.log(scores)
   }
 }
