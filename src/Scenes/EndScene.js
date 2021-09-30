@@ -57,15 +57,8 @@ export default class endScene extends Phaser.Scene {
     return response.json();
     }
 
-    const displayScore = () => {
-      postScore(gameScore).then((data) => {
-        console.log(data.json())
-      }).catch((error) => {             
-         throw new Error('Error:', error);
-      })
-    }
-    
-    displayScore();
+
+    postScore(gameScore)
 
     this.add.text(
       gameConfig.width / 2,

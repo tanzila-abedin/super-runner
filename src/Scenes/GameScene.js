@@ -6,6 +6,8 @@ let coronaObjects;
 let gameOver = false;
 let corona;
 let spike;
+let scoreText;
+let nameText;
 // let jem;
 // let river;
 
@@ -15,7 +17,51 @@ export const gameScore = {
 };
 
 // collision between player and corona
-function hitEnemy(player) {
+// const hitEnemy = (player) => {
+//   this.physics.pause();
+
+//   player.setTint(0xff0000);
+
+//   player.anims.play('death');
+
+//   gameOver = true;
+// }
+
+// // collision(hit) between player and river OR player and enemy
+// const playerHit = (player) => {
+//   // this.gameoveraudio.play();
+//   scoreText.setText(`Score: ${gameScore.score}`);
+
+//   gameScore.score -= 10;
+//   player.setVelocity(0, 0);
+//   player.setX(player.x - 1000);
+//   player.setY(300);
+//   player.play('idle', true);
+//   player.setAlpha(0);
+//   this.tweens.add({
+//     targets: player,
+//     alpha: 1,
+//     duration: 100,
+//     ease: 'Linear',
+//     repeat: 5,
+//   });
+// }
+
+// // increase score when start is collected
+// const point = (player, jem) => {
+//   // this.fx.play();
+//   jem.disableBody(true, true);
+//   gameScore.score += 10;
+//   scoreText.setText(`Score: ${gameScore.score}`);
+// }
+
+export default class GameScene extends Phaser.Scene {
+  constructor() {
+    super('Game');
+  }
+
+// collision between player and corona
+hitEnemy(player){
   this.physics.pause();
 
   player.setTint(0xff0000);
@@ -25,10 +71,10 @@ function hitEnemy(player) {
   gameOver = true;
 }
 
-// collision(hit) between player and river OR player and enemy
-function playerHit(player) {
+  // collision(hit) between player and river OR player and enemy
+playerHit(player){
   // this.gameoveraudio.play();
-  this.scoreText.setText(`Score: ${gameScore.score}`);
+  scoreText.setText(`Score: ${gameScore.score}`);
 
   gameScore.score -= 10;
   player.setVelocity(0, 0);
@@ -45,18 +91,14 @@ function playerHit(player) {
   });
 }
 
+
 // increase score when start is collected
-function point(player, jem) {
+point(player, jem){
   // this.fx.play();
   jem.disableBody(true, true);
   gameScore.score += 10;
-  this.scoreText.setText(`Score: ${gameScore.score}`);
+  scoreText.setText(`Score: ${gameScore.score}`);
 }
-
-export default class GameScene extends Phaser.Scene {
-  constructor() {
-    super('Game');
-  }
 
   create() {
     // this.add.image(400, 300, "logo");
@@ -124,7 +166,7 @@ export default class GameScene extends Phaser.Scene {
     });
 
     // adding collision between player and points(jem)
-    this.physics.add.collider(this.player, this.jems, point, null, this);
+    this.physics.add.collider(this.player, this.jems, this.point, null, this);
 
     // create rivers
     this.rivers = this.physics.add.group({
@@ -139,7 +181,7 @@ export default class GameScene extends Phaser.Scene {
     });
 
     // Adding collision between player and rivers
-    this.physics.add.collider(this.player, this.rivers, playerHit, null, this);
+    this.physics.add.collider(this.player, this.rivers, this.playerHit, null, this);
 
     // create enemyObject
     this.coronas = this.physics.add.group({
@@ -160,7 +202,7 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.collider(
       this.player,
       this.coronas,
-      hitEnemy,
+      this.hitEnemy,
       null,
       this,
     );
@@ -179,20 +221,20 @@ export default class GameScene extends Phaser.Scene {
     });
 
     // Adding collision between player and thorns
-    this.physics.add.collider(this.player, this.spikes, playerHit, null, this);
+    this.physics.add.collider(this.player, this.spikes, this.playerHit, null, this);
 
     // Text space for score
 
-    this.scoreText = this.add.text(16, 43, `Score: ${gameScore.score}`, {
+    scoreText = this.add.text(16, 43, `Score: ${gameScore.score}`, {
       fontSize: '32px',
       fill: '#000000',
     });
-    this.nameText = this.add.text(16, 16, `${gameConfig.user}`, {
+    nameText = this.add.text(16, 16, `${gameConfig.user}`, {
       fontSize: '32px',
       fill: '#000000',
     });
-    this.scoreText.setScrollFactor(0);
-    this.nameText.setScrollFactor(0);
+    scoreText.setScrollFactor(0);
+    nameText.setScrollFactor(0);
 
     // create camera to follow the player
 
@@ -249,4 +291,5 @@ export default class GameScene extends Phaser.Scene {
       this.player.setFlipX(true);
     }
   }
+
 }
