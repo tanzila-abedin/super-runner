@@ -9,20 +9,63 @@ export default class endScene extends Phaser.Scene {
   }
 
   create() {
-    const postScore = (score) => {
-      const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/L6RXz9spc5gYV37930Ga/scores/';
-      fetch(url, {
-        method: 'POST',
+
+    // const postScore = async(score) => {
+    //   const url =
+    //     "https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/L6RXz9spc5gYV37930Ga/scores/";
+    //   const request = {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(score),
+    //   };
+    //   try{
+    //     const fetchResponse = await fetch(url,request);
+    //     const data = await fetchResponse.json()
+    //     return data
+    //   }catch(err){
+    //     throw new Error('Error:', error)
+    //   }
+    // }
+//  const postScore = (score) => {
+//    const url =
+//      "https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/L6RXz9spc5gYV37930Ga/scores/";
+//    fetch(url, {
+//      method: "POST",
+//      headers: {
+//        "Content-Type": "application/json",
+//      },
+//      body: JSON.stringify(score),
+//    })
+//      .then((response) => response.json())
+//      .catch((error) => {
+//        throw new Error("Error:", error);
+//      });
+//  };
+
+    const postScore = async(score) => {
+      const url =
+        "https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/L6RXz9spc5gYV37930Ga/scores/";
+      const response = await fetch(url, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(score),
-      }).then((response) => response.json())
-        .catch((error) => {
-          throw new Error('Error:', error);
-        });
-    };
-    postScore(gameScore);
+      });
+    return response.json();
+    }
+
+    const displayScore = () => {
+      postScore(gameScore).then((data) => {
+        console.log(data.json())
+      }).catch((error) => {             
+         throw new Error('Error:', error);
+      })
+    }
+    
+    displayScore();
 
     this.add.text(
       gameConfig.width / 2,
