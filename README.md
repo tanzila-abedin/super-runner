@@ -44,7 +44,7 @@ View the GGD [here](GDD.md)
 - Download or clone this repo by using `git clone `
 - Run `npm install`
 - Run `npm run build` to bundle the files in the src folder & product ouput in build folder
-- Run `npm run watch` & Go to the dist folder and open index.html
+- Run `npm run watch` & open live server from index.html inside the src folder
 - To test run `npm test`
 
 ## Author
