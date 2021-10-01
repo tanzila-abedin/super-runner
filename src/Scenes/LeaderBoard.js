@@ -4,27 +4,28 @@ import config from '../Config/config';
 import Button from '../Objects/Button';
 import 'regenerator-runtime/runtime';
 
-const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/L6RXz9spc5gYV37930Ga/scores/';
+export const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/L6RXz9spc5gYV37930Ga/scores/';
 let scores;
 
-const getUsers = async () => {
+export const getUsers = async () => {
   const response = await axios.get(url);
   return response.data;
 };
 
-const getScores = async () => {
+export const getScores = async () => {
   try {
     const data = await getUsers();
-    scores = data.result;
-  } catch (err) {
-    console.error(err);
+     scores = data.result;
+     return data.result
+  } catch{
+    return []
   }
 };
 
 getScores();
 
 let placement = config.height / 2;
-export default class LeaderBoard extends Phaser.Scene {
+export class LeaderBoard extends Phaser.Scene {
   constructor() {
     super('Leaderboard');
   }
@@ -52,5 +53,6 @@ export default class LeaderBoard extends Phaser.Scene {
         );
         placement += 50;
       });
+      console.log(scores)
   }
 }
