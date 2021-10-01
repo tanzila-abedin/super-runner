@@ -1,49 +1,90 @@
-# Phaser 3 Webpack Project Template
+# Phaser Platform Game
 
-A Phaser 3 project template with ES6 support via [Babel 7](https://babeljs.io/) and [Webpack 4](https://webpack.js.org/) that includes hot-reloading for development and production-ready builds.
+[Click here to view live demo](https://tanzila-abedin.github.io/super-runner/)
 
-This has been updated for Phaser 3.50.0 version and above.
+A platform game built with Phaser JS.
+In the game player can collect stars while avoiding enemy(GERMS) objects and collision with spikes. To move in different directions player can make use of arrow keys.
 
-Loading images via JavaScript module `import` is also supported, although not recommended.
+# Game Instructions 
 
-## Requirements
+***1. Start the game by typing out your name and click on play***
 
-[Node.js](https://nodejs.org) is required to install dependencies and run scripts via `npm`.
+![screenshot](./src/assets/instruction/ss1.png)
 
-## Available Commands
 
-| Command | Description |
-|---------|-------------|
-| `npm install` | Install project dependencies |
-| `npm start` | Build project and open web server running project |
-| `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
+***2. Player may move forward with RIGHT key and jump with UP key***
 
-## Writing Code
 
-After cloning the repo, run `npm install` from your project directory. Then, you can start the local development server by running `npm start`.
+![screenshot](src/assets/instruction/ss2.png)
 
-After starting the development server with `npm start`, you can edit any files in the `src` folder and webpack will automatically recompile and reload your server (available at `http://localhost:8080` by default).
+***3. Player may collect stars to increase score while moving forward***
 
-## Customizing the Template
 
-### Babel
+![screenshot](src/assets/instruction/ss4.png)
 
-You can write modern ES6+ JavaScript and Babel will transpile it to a version of JavaScript that you want your project to support. The targeted browsers are set in the `.babelrc` file and the default currently targets all browsers with total usage over "0.25%" but excludes IE11 and Opera Mini.
+***4 player should avoid collision with the spikes and falling in the river as it will reduce their scores***
 
- ```
-"browsers": [
-  ">0.25%",
-  "not ie 11",
-  "not op_mini all"
-]
- ```
 
-### Webpack
+![screenshot](src/assets/instruction/ss6.png)
 
-If you want to customize your build, such as adding a new webpack loader or plugin (i.e. for loading CSS or fonts), you can modify the `webpack/base.js` file for cross-project changes, or you can modify and/or create new configuration files and target them in specific npm tasks inside of `package.json'.
+***5 player should avoid collision with the germs enemy object as it will end the game***
 
-## Deploying Code
 
-After you run the `npm run build` command, your code will be built into a single bundle located at `dist/bundle.min.js` along with any other assets you project depended. 
+![screenshot](src/assets/instruction/ss11.png)
 
-If you put the contents of the `dist` folder in a publicly-accessible location (say something like `http://mycoolserver.com`), you should be able to open `http://mycoolserver.com/index.html` and play your game.
+***6 As the game ends player score will appear on the screen***
+
+
+![screenshot](src/assets/instruction/ss8.png)
+
+***7 To view the top most scores player can visit the SCORE secene.*** 
+
+
+![screenshot](src/assets/instruction/ss9.png)
+
+## Additional description about the project and its features.
+
+View the GGD [here](GDD.md)
+
+## Built With
+
+- JavaScript
+- Phaser
+
+## Getting Started
+
+- Download or clone this repo by using `git clone `
+- Run `npm install`
+- Run `npm run build` to bundle the files in the src folder & product ouput in build folder
+- Run `npm run watch` & open live server from index.html inside the src folder
+- To test run `npm test`
+
+## Author
+
+👤 **Tanzila**
+
+![Tanzila's GitHub stats](https://github-readme-stats.vercel.app/api?username=tanzila-abedin&count_private=true&theme=dark&show_icons=true)
+
+- GitHub: [@githubhandle](https://github.com/tanzila-abedin)
+- Twitter: [@twitterhandle](https://twitter.com/TanzilaAbedin)
+- LinkedIn: [Profile](https://www.linkedin.com/in/tanzila-abedin-331440b2/)
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](../../issues/).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc
+
+## 📝 License
+
+This project is [MIT](LICENSE) licensed.
