@@ -4,11 +4,33 @@
 
 A platform game built with Phaser JS.
 
+# Game Instructions 
+
+***1. Start the game by typing out your name and click on play***
+
+![screenshot](./src/assets/instruction/ss1.png)
+
 One may collect gems while trying to escape enemy object and spikes along the way. Make use of arrow keys to move in different directions.
 
-![screenshot](./src/assets/superRunneSS.png)
+***2. Player may move forward with RIGHT key and jump with UP key***
+![screenshot](src/assets/instruction/ss2.png)
 
-Additional description about the project and its features.
+***3. Player may collect stars to increase score while moving forward***
+![screenshot](src/assets/instruction/ss4.png)
+
+***4 player should avoid collision with the spikes as it will reduce their scores***
+![screenshot](src/assets/instruction/ss6.png)
+
+***5 player should avoid collision with the germs enemy object as it will end the game***
+![screenshot](src/assets/instruction/ss11.png)
+
+***6 As the game ends player score will appear on the screen***
+![screenshot](src/assets/instruction/ss8.png)
+
+***7 To view the top most scores player can visit the SCORE secene.*** 
+![screenshot](src/assets/instruction/ss9.png)
+
+Additional description about the project and its features. 
 
 View the GGD [here](GDD.md)
 
