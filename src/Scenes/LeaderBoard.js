@@ -15,10 +15,10 @@ export const getUsers = async () => {
 export const getScores = async () => {
   try {
     const data = await getUsers();
-     scores = data.result;
-     return data.result
-  } catch{
-    return []
+    scores = data.result;
+    return data.result;
+  } catch {
+    return [];
   }
 };
 
@@ -53,6 +53,6 @@ export class LeaderBoard extends Phaser.Scene {
         );
         placement += 50;
       });
-      console.log(scores)
+    console.log(scores);
   }
 }

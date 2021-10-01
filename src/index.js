@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import Model from './Model';
 import config from './Config/config';
-import {LeaderBoard} from './Scenes/LeaderBoard';
+import { LeaderBoard } from './Scenes/LeaderBoard';
 import BootScene from './Scenes/BootScene';
 import PreloaderScene from './Scenes/PreloaderScene';
 import TitleScene from './Scenes/TitleScene';
